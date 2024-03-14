@@ -160,7 +160,11 @@ def kics_fix_issue(check: str, template: dict, check_id: str) -> str:
             obj_path = matches[-1]
 
         else:
-            obj_path = obj_path.split("}}.")[1]
+            obj_path = obj_path.split("}}.")
+            if len(obj_path) > 1:
+                obj_path = obj_path[1]
+            else:
+                return
 
             obj_name = ""
             if ".name=" in obj_path:
