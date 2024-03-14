@@ -78,6 +78,8 @@ def iterate_checks(chart_folder: str, json_path: str) -> None:
 
                     print(f"{control['controlID']}: {control['name']}")
                     check_id = fix_issue(control, resource_path, template)
+                    if check_id is None:
+                        check_id = "C-missing"
                     for rule in control["rules"]:
                         if "paths" in rule:
                             for _ in rule["paths"]:
