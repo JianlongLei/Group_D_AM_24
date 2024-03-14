@@ -231,6 +231,8 @@ def kics_fix_issue(check: str, template: dict, check_id: str) -> str:
                 continue
             # Get the shared Service Account
             k8s_resource = get_resource_dict(template, resource_path.split("/"))
+            if k8s_resource is None:
+                return
             sa_resource_path = "ServiceAccount/"
             if "namespace" in k8s_resource["metadata"]:
                 sa_resource_path += k8s_resource["metadata"]["namespace"] + "/"
